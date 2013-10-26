@@ -1,0 +1,19 @@
+<?php
+
+
+/* Default All mail folder */
+$rcmail_config['vinbox_mbox'] = 'virtual/INBOX';
+
+/* NOTE:
+   If you want to create the all mail folder by default, then configure
+   ./config/main.inc.php as follows:
+   
+  // display these folders separately in the mailbox list.
+  // these folders will also be displayed with localized names
+  $rcmail_config['default_folders'] = array('INBOX', 'Notes', 'Archive', 'Drafts', 'Sent', 'Junk', 'Trash');
+
+  // automatically create the above listed default folders on login
+  $rcmail_config['create_default_folders'] = true;
+*/
+
+?>
