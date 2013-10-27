@@ -1,32 +1,32 @@
 <?php
 
 /**
- * vinbox (vinbox)
+ * virtual_inbox (virtual_inbox)
  *
  * Based on Mark As Junk sample plugin.
  *
- * @version 2.9 - 16.09.2013
- * @author Andre Rodier, Thomas Bruederli, Roland 'rosali' Liebl
- * @website http://myroundcube.googlecode.com 
+ * @version 1.0 - 2013-10-26
+ * @author Travis Brown
+ * @website http://github.com/tebrown/virtual-inbox
  */
  
 /**
  *
- * Usage: http://mail4us.net/myroundcube/
+ * Usage: http://github.com/tebrown/virtual-inbox
  *
  **/
   
-class vinbox extends rcube_plugin
+class virtual_inbox extends rcube_plugin
 {
   public $task = 'mail|settings';
   
   private $done = false;
   
   /* unified plugin properties */
-  static private $plugin = 'vinbox';
+  static private $plugin = 'virtual_inbox';
   static private $author = 'myroundcube@mail4us.net';
-  static private $authors_comments = '<a href="http://myroundcube.com/myroundcube-plugins/vinbox-plugin" target="_new">Documentation</a>';
-  static private $download = 'http://myroundcube.googlecode.com';
+  static private $authors_comments = '<a href="http://github.com/tebrown/virtual_iinbox" target="_new">Documentation</a>';
+  static private $download = 'http://github.com/tebrown/virtual_inbox';
   static private $version = '1.0';
   static private $date = '10-25-2013';
   static private $licence = 'GPL';
@@ -45,7 +45,7 @@ class vinbox extends rcube_plugin
     }
 
     $this->add_texts('localization/');
-    $this->register_action('plugin.vinbox', array($this, 'request_action'));
+    $this->register_action('plugin.virtual_inbox', array($this, 'request_action'));
 
     if ($rcmail->task == 'mail' && ($rcmail->action == '' || $rcmail->action == 'show')
         && ($vinbox_folder = $rcmail->config->get('vinbox_mbox'))) 
@@ -56,9 +56,9 @@ class vinbox extends rcube_plugin
 
         // set env variable for client
         $rcmail->output->set_env('vinbox_folder', $vinbox_folder);
-        $rcmail->output->set_env('xinbox_folder_icon', $this->url($skin_path.'/foldericon.png'));
+        $rcmail->output->set_env('vinbox_folder_icon', $this->url($skin_path.'/foldericon.png'));
           
-        $this->include_stylesheet($skin_path . '/vinbox.css');
+        $this->include_stylesheet($skin_path . '/virtual_inbox.css');
 
 
     }
@@ -148,7 +148,7 @@ class vinbox extends rcube_plugin
     
     $this->done = true;
     
-    $this->include_script('vinbox.js');
+    $this->include_script('virtual_inbox.js');
 
     $rcmail = rcmail::get_instance();
     if ($rcmail->task == 'mail' && ($rcmail->action == '' || $rcmail->action == 'show') && ($vinbox_folder = $rcmail->config->get('vinbox_mbox', false))) {   
@@ -167,11 +167,11 @@ class vinbox extends rcube_plugin
         //exit();
       if (isset($p['list'][$vinbox_folder]))  
       {
-        $p['list'][$vinbox_folder]['name'] = $this->gettext('vinbox.vinbox');  
+        $p['list'][$vinbox_folder]['name'] = $this->gettext('virtual_inbox.vinbox');  
       }
       else // search in subfolders  
       {
-        $this->_mod_folder_name($p['list'], $vinbox_folder, $this->gettext('vinbox.vinbox'));  
+        $this->_mod_folder_name($p['list'], $vinbox_folder, $this->gettext('virtual_inbox.vinbox'));  
       }
     }  
     return $p;
